@@ -8,7 +8,7 @@ class AddPlanVC: UIViewController, UITextFieldDelegate {
     var navigationBarHeight:CGFloat!
     var tabBarHeight:CGFloat!
     
-    private var nameTextField: UITextField!
+    private var titleTextField: UITextField!
     private var  startBtn:UIButton!
     private var  endtBtn:UIButton!
     private var  editMenuBtn:UIButton!
@@ -40,13 +40,13 @@ class AddPlanVC: UIViewController, UITextFieldDelegate {
         self.view.addSubview(name)
         
         // UITextFieldの作成
-        nameTextField = UITextField()
-        nameTextField.frame = CGRect(x: 32, y: statusBarHeight + navigationBarHeight + 48, width: viewWidth - 32 * 2, height: 40)
-        nameTextField.text = "myTextField"
-        nameTextField.delegate = self
-        nameTextField.borderStyle = UITextBorderStyle.roundedRect
-        nameTextField.clearButtonMode = .whileEditing
-        self.view.addSubview(nameTextField)
+        titleTextField = UITextField()
+        titleTextField.frame = CGRect(x: 32, y: statusBarHeight + navigationBarHeight + 48, width: viewWidth - 32 * 2, height: 40)
+        titleTextField.text = ""
+        titleTextField.delegate = self
+        titleTextField.borderStyle = UITextBorderStyle.roundedRect
+        titleTextField.clearButtonMode = .whileEditing
+        self.view.addSubview(titleTextField)
         
         let term = UILabel()
         term.text = "期間"
@@ -60,7 +60,7 @@ class AddPlanVC: UIViewController, UITextFieldDelegate {
         startBtn = UIButton()
         startBtn.frame = CGRect(x: 32, y: statusBarHeight + navigationBarHeight + 140, width: (viewWidth - 64)/2 - 2 , height: 40)
         startBtn.backgroundColor = UIColor.gray
-        startBtn.addTarget(self, action: #selector(cornerCircleButtonClicked(sender:)), for:.touchUpInside)
+        startBtn.addTarget(self, action: #selector(startBtnClicked(sender:)), for:.touchUpInside)
         startBtn.setTitle("2018/05/06", for: UIControlState.normal)
         startBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
         startBtn.layer.masksToBounds = true
@@ -71,7 +71,7 @@ class AddPlanVC: UIViewController, UITextFieldDelegate {
         endtBtn = UIButton()
         endtBtn.frame = CGRect(x: viewWidth/2 + 2, y: statusBarHeight + navigationBarHeight + 140, width: (viewWidth - 64)/2 - 2, height: 40)
         endtBtn.backgroundColor = UIColor.gray
-        endtBtn.addTarget(self, action: #selector(cornerCircleButtonClicked(sender:)), for:.touchUpInside)
+        endtBtn.addTarget(self, action: #selector(endBtnClicked(sender:)), for:.touchUpInside)
         endtBtn.setTitle("2018/05/06", for: UIControlState.normal)
         endtBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
         endtBtn.layer.masksToBounds = true
@@ -90,7 +90,7 @@ class AddPlanVC: UIViewController, UITextFieldDelegate {
         editMenuBtn = UIButton()
         editMenuBtn.frame = CGRect(x: 32, y: statusBarHeight + navigationBarHeight + 228, width: viewWidth - 64, height: 40)
         editMenuBtn.backgroundColor = UIColor.gray
-        editMenuBtn.addTarget(self, action: #selector(cornerCircleButtonClicked(sender:)), for:.touchUpInside)
+        editMenuBtn.addTarget(self, action: #selector(menuBtnClicked(sender:)), for:.touchUpInside)
         editMenuBtn.setTitle("メニューを編集する", for: UIControlState.normal)
         editMenuBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
         editMenuBtn.layer.masksToBounds = true
@@ -119,18 +119,13 @@ class AddPlanVC: UIViewController, UITextFieldDelegate {
         saveBtn = UIButton()
         saveBtn.frame = CGRect(x: 32, y: viewHeight - (statusBarHeight + navigationBarHeight + tabBarHeight), width: (viewWidth - 64), height: 40)
         saveBtn.backgroundColor = UIColor.init(named: "MainPink")
-        saveBtn.addTarget(self, action: #selector(cornerCircleButtonClicked(sender:)), for:.touchUpInside)
+        saveBtn.addTarget(self, action: #selector(endBtnClicked(sender:)), for:.touchUpInside)
         saveBtn.setTitle("保存する", for: UIControlState.normal)
         saveBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
         saveBtn.layer.masksToBounds = true
         saveBtn.layer.cornerRadius = 4.0
         self.view.addSubview(saveBtn)
         
-    }
-    
-    //角丸ボタンが押されたら呼ばれます
-    @objc internal func cornerCircleButtonClicked(sender: UIButton){
-        print("cornerCircleButtonBtnClicked")
     }
     
     //UITextFieldが編集された前に呼ばれる
@@ -149,8 +144,23 @@ class AddPlanVC: UIViewController, UITextFieldDelegate {
         
         // 改行ボタンが押されたらKeyboardを閉じる処理.
         textField.resignFirstResponder()
-        
         return true
+    }
+    
+    //startボタンが押されたら呼ばれる
+    @objc internal func startBtnClicked(sender: UIButton){
+        print("cornerCircleButtonBtnClicked")
+    }
+    
+    //endボタンが押されたら呼ばれる
+    @objc internal func endBtnClicked(sender: UIButton){
+        print("cornerCircleButtonBtnClicked")
+    }
+    
+    //menuボタンが押されたら呼ばれる
+    @objc internal func menuBtnClicked(sender: UIButton){
+        let addPlanListVC:AddPlanListVC = AddPlanListVC()
+        self.navigationController?.pushViewController(addPlanListVC, animated: true)
     }
 
 }
