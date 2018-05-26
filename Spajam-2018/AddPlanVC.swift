@@ -1,6 +1,6 @@
 import UIKit
 
-class AddPlanVC: UIViewController, UITextFieldDelegate, AddMuneDelegate {
+class AddPlanVC: UIViewController, UITextFieldDelegate, AddMuneDelegate, DatePickerDelegate {
     
     var viewWidth:CGFloat!
     var viewHeight:CGFloat!
@@ -10,7 +10,7 @@ class AddPlanVC: UIViewController, UITextFieldDelegate, AddMuneDelegate {
     
     private var titleTextField: UITextField!
     private var  startBtn:UIButton!
-    private var  endtBtn:UIButton!
+    private var  endBtn:UIButton!
     private var  editMenuBtn:UIButton!
 
     private var menuNameLabel:UILabel!
@@ -61,22 +61,22 @@ class AddPlanVC: UIViewController, UITextFieldDelegate, AddMuneDelegate {
         startBtn.frame = CGRect(x: 32, y: statusBarHeight + navigationBarHeight + 140, width: (viewWidth - 64)/2 - 2 , height: 40)
         startBtn.backgroundColor = UIColor.gray
         startBtn.addTarget(self, action: #selector(startBtnClicked(sender:)), for:.touchUpInside)
-        startBtn.setTitle("2018/05/06", for: UIControlState.normal)
+        startBtn.setTitle("2018/05/26", for: UIControlState.normal)
         startBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
         startBtn.layer.masksToBounds = true
         startBtn.layer.cornerRadius = 4.0
         self.view.addSubview(startBtn)
         
         //エンド
-        endtBtn = UIButton()
-        endtBtn.frame = CGRect(x: viewWidth/2 + 2, y: statusBarHeight + navigationBarHeight + 140, width: (viewWidth - 64)/2 - 2, height: 40)
-        endtBtn.backgroundColor = UIColor.gray
-        endtBtn.addTarget(self, action: #selector(endBtnClicked(sender:)), for:.touchUpInside)
-        endtBtn.setTitle("2018/05/06", for: UIControlState.normal)
-        endtBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
-        endtBtn.layer.masksToBounds = true
-        endtBtn.layer.cornerRadius = 4.0
-        self.view.addSubview(endtBtn)
+        endBtn = UIButton()
+        endBtn.frame = CGRect(x: viewWidth/2 + 2, y: statusBarHeight + navigationBarHeight + 140, width: (viewWidth - 64)/2 - 2, height: 40)
+        endBtn.backgroundColor = UIColor.gray
+        endBtn.addTarget(self, action: #selector(endBtnClicked(sender:)), for:.touchUpInside)
+        endBtn.setTitle("2018/05/27", for: UIControlState.normal)
+        endBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
+        endBtn.layer.masksToBounds = true
+        endBtn.layer.cornerRadius = 4.0
+        self.view.addSubview(endBtn)
         
         let menu = UILabel()
         menu.text = "メニュー"
@@ -99,7 +99,7 @@ class AddPlanVC: UIViewController, UITextFieldDelegate, AddMuneDelegate {
         
         //メニューの名前
         menuNameLabel = UILabel()
-        menuNameLabel.text = "ランニング"
+        menuNameLabel.text = ""
         menuNameLabel.textColor = UIColor.init(named: "MainGray")
         menuNameLabel.frame = CGRect(x: 32, y: statusBarHeight + navigationBarHeight + 280, width: (viewWidth - 64)/2, height: 16)
         menuNameLabel.font = UIFont.boldSystemFont(ofSize: 16)
@@ -108,7 +108,7 @@ class AddPlanVC: UIViewController, UITextFieldDelegate, AddMuneDelegate {
         
         //メニューの詳細
         menuDescriptionLabel = UILabel()
-        menuDescriptionLabel.text = "10 Km"
+        menuDescriptionLabel.text = ""
         menuDescriptionLabel.textColor = UIColor.init(named: "MainGray")
         menuDescriptionLabel.frame = CGRect(x: viewWidth/2, y: statusBarHeight + navigationBarHeight + 280, width: (viewWidth - 64)/2, height: 16)
         menuDescriptionLabel.font = UIFont.boldSystemFont(ofSize: 16)
@@ -149,12 +149,56 @@ class AddPlanVC: UIViewController, UITextFieldDelegate, AddMuneDelegate {
     
     //startボタンが押されたら呼ばれる
     @objc internal func startBtnClicked(sender: UIButton){
-        print("cornerCircleButtonBtnClicked")
+        
+        var year:String = "2018"
+        var month:String = "06"
+        var day:String = "25"
+        if let date = sender.titleLabel?.text {
+            let split = date.components(separatedBy: "/")
+            year = split[0]
+            month = split[1]
+            day = split[2]
+        }
+        let addPlanDateVC:AddPlanDateVC = AddPlanDateVC()
+        addPlanDateVC.delegate = self
+        addPlanDateVC.isStart = true
+        addPlanDateVC.tabBarHeight = tabBarHeight
+        addPlanDateVC.year = year
+        addPlanDateVC.month = month
+        addPlanDateVC.day = day
+        addPlanDateVC.modalPresentationStyle = .overCurrentContext
+        present(addPlanDateVC, animated: true, completion: nil)
+    }
+    
+    //Delegateで呼ぶViewの背景色を変えるメソッド
+    func editStartBtn(year:String, month:String, day:String){
+        startBtn.setTitle(year+"/"+month+"/"+day, for: UIControlState.normal)
     }
     
     //endボタンが押されたら呼ばれる
     @objc internal func endBtnClicked(sender: UIButton){
-        print("cornerCircleButtonBtnClicked")
+        var year:String = "2018"
+        var month:String = "06"
+        var day:String = "25"
+        if let date = sender.titleLabel?.text {
+            let split = date.components(separatedBy: "/")
+            year = split[0]
+            month = split[1]
+            day = split[2]
+        }
+        let addPlanDateVC:AddPlanDateVC = AddPlanDateVC()
+        addPlanDateVC.delegate = self
+        addPlanDateVC.isStart = false
+        addPlanDateVC.tabBarHeight = tabBarHeight
+        addPlanDateVC.year = year
+        addPlanDateVC.month = month
+        addPlanDateVC.day = day
+        addPlanDateVC.modalPresentationStyle = .overCurrentContext
+        present(addPlanDateVC, animated: true, completion: nil)
+    }
+    
+    func editEndBtn(year:String, month:String, day:String){
+        endBtn.setTitle(year+"/"+month+"/"+day, for: UIControlState.normal)
     }
     
     //menuボタンが押されたら呼ばれる
