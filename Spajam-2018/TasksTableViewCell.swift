@@ -51,7 +51,7 @@ class TasksTableViewCell: UITableViewCell {
         taskNameLabel.font = UIFont.boldSystemFont(ofSize: 20)
         taskNameLabel.textColor = UIColor.gray
         taskNameLabel.textAlignment = NSTextAlignment.left
-        taskNameLabel.text = "１週間マラソン"
+        //taskNameLabel.text = "１週間マラソン"
         self.addSubview(taskNameLabel)
         
         //taskDescription
@@ -59,7 +59,7 @@ class TasksTableViewCell: UITableViewCell {
         taskDescriptionLabel.font = UIFont.boldSystemFont(ofSize: 16)
         taskDescriptionLabel.textColor = UIColor.gray
         taskDescriptionLabel.textAlignment = NSTextAlignment.left
-        taskDescriptionLabel.text = "１週間でフルマラソン走りますよ、頑張るよ"
+        //taskDescriptionLabel.text = "１週間でフルマラソン走りますよ、頑張るよ"
         taskDescriptionLabel.numberOfLines = 0
         taskDescriptionLabel.sizeToFit()
         //let rect: CGSize = taskDescriptionLabel.sizeThatFits(CGSize(width: frame.width, height: CGFloat.greatestFiniteMagnitude))

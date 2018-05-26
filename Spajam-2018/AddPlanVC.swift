@@ -1,4 +1,7 @@
 import UIKit
+import SwiftyJSON
+import Alamofire
+import SCLAlertView
 
 class AddPlanVC: UIViewController, UITextFieldDelegate, AddMuneDelegate, DatePickerDelegate {
     
@@ -119,7 +122,7 @@ class AddPlanVC: UIViewController, UITextFieldDelegate, AddMuneDelegate, DatePic
         saveBtn = UIButton()
         saveBtn.frame = CGRect(x: 32, y: viewHeight - (statusBarHeight + navigationBarHeight + tabBarHeight), width: (viewWidth - 64), height: 40)
         saveBtn.backgroundColor = UIColor.init(named: "MainPink")
-        saveBtn.addTarget(self, action: #selector(endBtnClicked(sender:)), for:.touchUpInside)
+        saveBtn.addTarget(self, action: #selector(saveBtnClicked(sender:)), for:.touchUpInside)
         saveBtn.setTitle("保存する", for: UIControlState.normal)
         saveBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
         saveBtn.layer.masksToBounds = true
@@ -212,6 +215,82 @@ class AddPlanVC: UIViewController, UITextFieldDelegate, AddMuneDelegate, DatePic
     func addMenu(menu:String, description:String){
         menuNameLabel.text = menu
         menuDescriptionLabel.text = description
+    }
+    
+    //saveボタンが押されたら呼ばれる
+    @objc internal func saveBtnClicked(sender: UIButton){
+        //indicatrer
+        
+        var title:String = ""
+        var start:String = ""
+        var end:String = ""
+        var menu:String = ""
+
+        if !(titleTextField.text?.isEmpty)! {
+            title = titleTextField.text!
+        } else {
+            SCLAlertView().showError("Error", subTitle: "投稿に失敗しました") // Warning
+            return
+        }
+        
+        if !((startBtn.titleLabel?.text?.isEmpty)!) {
+            start = (startBtn.titleLabel?.text!)!
+            if start.contains("/") {
+                start = start.replacingOccurrences(of:"/", with:"-")
+            } else {
+                SCLAlertView().showError("Error", subTitle: "投稿に失敗しました") // Warning
+                return
+            }
+        } else {
+            SCLAlertView().showError("Error", subTitle: "投稿に失敗しました") // Warning
+            return
+        }
+        
+        if !((endBtn.titleLabel?.text?.isEmpty)!) {
+            end = (endBtn.titleLabel?.text!)!
+            if end.contains("/") {
+                end = end.replacingOccurrences(of:"/", with:"-")
+            } else {
+                SCLAlertView().showError("Error", subTitle: "投稿に失敗しました") // Warning
+                return
+            }
+        } else {
+            SCLAlertView().showError("Error", subTitle: "投稿に失敗しました") // Warning
+            return
+        }
+        
+        if (menuNameLabel.text?.isEmpty)! || (menuDescriptionLabel.text?.isEmpty)! {
+            SCLAlertView().showError("Error", subTitle: "投稿に失敗しました") // Warning
+            return
+        } else {
+            menu = menuNameLabel.text! + "-" +  menuDescriptionLabel.text!
+        }
+        
+        let parameters: Parameters = [
+            "id": 1,
+            "title": title,
+            "start": start,
+            "end": end,
+            "menu": menu,
+        ]
+        
+        Alamofire.request("http://spajam2018-rails-server.herokuapp.com/api/v0/objective", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON{ response in
+            
+            switch response.result {
+            case .success:
+                
+                let json:JSON = JSON(response.result.value ?? kill)
+                if json["is_success"].boolValue {
+                    SCLAlertView().showSuccess("Completed", subTitle: "目標を投稿しました") //
+                } else {
+                    SCLAlertView().showError("Error", subTitle: "投稿に失敗しました") // Warning
+                }
+                
+            case .failure(let error):
+                SCLAlertView().showError("Error", subTitle: "投稿に失敗しました") // Warning
+                print(error)
+            }
+        }
     }
     
 }
