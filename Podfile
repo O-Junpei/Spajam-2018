@@ -6,6 +6,10 @@ target 'Spajam-2018' do
   use_frameworks!
 
   # Pods for Spajam-2018
+  pod 'SCLAlertView', '~> 0.7'
+  pod 'Alamofire', '~> 4.6'
+  pod 'SwiftyJSON'
+
 
   target 'Spajam-2018Tests' do
     inherit! :search_paths
