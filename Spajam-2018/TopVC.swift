@@ -4,6 +4,10 @@ import SwiftyJSON
 
 class TopVC: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     
+    var viewWidth:CGFloat!
+    var viewHeight:CGFloat!
+    var tabBarHeight:CGFloat!
+
     private var tasksTableView: UITableView!
     
     
@@ -17,17 +21,27 @@ class TopVC: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         myItems = ["りんご", "すいか", "もも", "さくらんぼ", "ぶどう", "なし", "さくらんぼ", "ぶどう", "なし", "さくらんぼ", "ぶどう", "なし"]
 
         //Viewの大きさを取得
-        let viewWidth = self.view.frame.size.width
-        let viewHeight = self.view.frame.size.height
+        viewWidth = self.view.frame.size.width
+        viewHeight = self.view.frame.size.height
+        tabBarHeight = (self.tabBarController?.tabBar.frame.size.height)!
         
         //テーブルビューの初期化
         tasksTableView = UITableView()
         tasksTableView.delegate = self
         tasksTableView.dataSource = self
-        tasksTableView.frame = CGRect(x: 0, y: 0, width: viewWidth, height: viewHeight)
+        tasksTableView.frame = CGRect(x: 0, y: 0, width: viewWidth, height: viewHeight-tabBarHeight)
         tasksTableView.rowHeight = 100
         tasksTableView.register(TasksTableViewCell.self, forCellReuseIdentifier: NSStringFromClass(TasksTableViewCell.self))
         self.view.addSubview(tasksTableView)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //TableView選択解除
+        if let indexPathForSelectedRow = tasksTableView.indexPathForSelectedRow {
+            tasksTableView.deselectRow(at: indexPathForSelectedRow, animated: true)
+        }
     }
     
     //MARK: テーブルビューのセルの数を設定する

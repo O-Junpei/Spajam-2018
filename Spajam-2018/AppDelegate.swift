@@ -12,17 +12,14 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var navigationController: UINavigationController?
     var tabBarController: UITabBarController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window!.makeKeyAndVisible()
         
-        UITabBar.appearance().tintColor = .green
-        UITabBar.appearance().unselectedItemTintColor = .red
-        UITabBar.appearance().barTintColor = .orange
+        //tabb
+        UITabBar.appearance().tintColor = .black
+        UITabBar.appearance().unselectedItemTintColor = .gray
+        UITabBar.appearance().barTintColor = .white
         UITabBar.appearance().isTranslucent = false
         
         
@@ -31,12 +28,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let firstViewController: TopVC? = TopVC()
         firstViewController?.tabBarItem = UITabBarItem(title: "センター", image: UIImage(named: "tab-icon-square"), tag: 1)
-        navigationController = UINavigationController(rootViewController: firstViewController!)
-        viewControllers.append(navigationController!)
-    
-        let secondViewController: TopVC? = TopVC()
+        let firstNavigationController = UINavigationController(rootViewController: firstViewController!)
+        viewControllers.append(firstNavigationController)
+
+        let secondViewController: AddPlanVC? = AddPlanVC()
         secondViewController?.tabBarItem = UITabBarItem(title: "目標設定", image: UIImage(named: "tab-icon-addPlan"), tag: 2)
-        viewControllers.append(secondViewController!)
+        let secondtNavigationController = UINavigationController(rootViewController: secondViewController!)
+        viewControllers.append(secondtNavigationController)
 
         let thirdViewController: TopVC? = TopVC()
         thirdViewController?.tabBarItem = UITabBarItem(title: "自己管理", image: UIImage(named: "tab-icon-myList"), tag: 3)
@@ -48,6 +46,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         tabBarController = UITabBarController()
         tabBarController?.setViewControllers(viewControllers, animated: false)
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window!.makeKeyAndVisible()
         window?.rootViewController = tabBarController
 
         return true
