@@ -4,15 +4,15 @@ import UIKit
 class TasksTableViewCell: UITableViewCell {
     
     var iconImageView:UIImageView!
-    var taskNameLabel:UILabel!
-    var taskDescriptionLabel:UILabel!
+    var titleLabel:UILabel!
+    var dateLabel:UILabel!
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         iconImageView = UIImageView()
-        taskNameLabel = UILabel()
-        taskDescriptionLabel = UILabel()
+        titleLabel = UILabel()
+        dateLabel = UILabel()
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -28,7 +28,7 @@ class TasksTableViewCell: UITableViewCell {
         
         //iconImageView
         iconImageView.frame = CGRect(x: 10, y: 10, width: 80, height: 80)
-        iconImageView.image = UIImage(named: "run")
+        //iconImageView.image = UIImage(named: "run")
         iconImageView.backgroundColor = .white
         iconImageView.layer.cornerRadius = 10
         iconImageView.layer.masksToBounds = false
@@ -47,24 +47,24 @@ class TasksTableViewCell: UITableViewCell {
         
         
         //TaskTitle
-        taskNameLabel.frame = CGRect(x: 110, y: 12, width: 200, height: 20)
-        taskNameLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        taskNameLabel.textColor = UIColor.gray
-        taskNameLabel.textAlignment = NSTextAlignment.left
+        titleLabel.frame = CGRect(x: 110, y: 12, width: 200, height: 20)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel.textColor = UIColor.gray
+        titleLabel.textAlignment = NSTextAlignment.left
         //taskNameLabel.text = "１週間マラソン"
-        self.addSubview(taskNameLabel)
+        self.addSubview(titleLabel)
         
         //taskDescription
-        taskDescriptionLabel.frame = CGRect(x: 110, y: 40, width: 200, height: 16)
-        taskDescriptionLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        taskDescriptionLabel.textColor = UIColor.gray
-        taskDescriptionLabel.textAlignment = NSTextAlignment.left
+        dateLabel.frame = CGRect(x: 110, y: 40, width: 200, height: 16)
+        dateLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        dateLabel.textColor = UIColor.gray
+        dateLabel.textAlignment = NSTextAlignment.left
         //taskDescriptionLabel.text = "１週間でフルマラソン走りますよ、頑張るよ"
-        taskDescriptionLabel.numberOfLines = 0
-        taskDescriptionLabel.sizeToFit()
+        dateLabel.numberOfLines = 0
+        dateLabel.sizeToFit()
         //let rect: CGSize = taskDescriptionLabel.sizeThatFits(CGSize(width: frame.width, height: CGFloat.greatestFiniteMagnitude))
         //taskDescriptionLabel.frame = CGRect(x: 110, y: 32, width: rect.width, height: rect.height)
-        self.addSubview(taskDescriptionLabel)
+        self.addSubview(dateLabel)
  
     }
 
