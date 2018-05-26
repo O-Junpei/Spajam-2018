@@ -3,23 +3,16 @@ import UIKit
 
 class TasksTableViewCell: UITableViewCell {
     
-    //var timeLabel:UILabel!
-    //var alarmNameLabel:UILabel!
-    //var weekLabel:UILabel!
-    
     var iconImageView:UIImageView!
     var taskNameLabel:UILabel!
-    var taskDescription:UILabel!
+    var taskDescriptionLabel:UILabel!
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         iconImageView = UIImageView()
         taskNameLabel = UILabel()
-        taskDescription = UILabel()
-        //timeLabel = UILabel()
-        //alarmNameLabel = UILabel()
-        //weekLabel = UILabel()
+        taskDescriptionLabel = UILabel()
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -32,49 +25,46 @@ class TasksTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        //let cellWidth:CGFloat = self.frame.width
-        //let cellHeight:CGFloat = self.frame.height
-        
         
         //iconImageView
-        iconImageView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        iconImageView.image = UIImage(named: "tab-icon-sample")
+        iconImageView.frame = CGRect(x: 10, y: 10, width: 80, height: 80)
+        iconImageView.image = UIImage(named: "run")
+        iconImageView.backgroundColor = .white
+        iconImageView.layer.cornerRadius = 10
+        iconImageView.layer.masksToBounds = false
+        
+        //影つけるよ
+        iconImageView.layer.shadowColor = UIColor.black.cgColor
+        iconImageView.layer.shadowOpacity = 0.5 // 透明度
+        iconImageView.layer.shadowOffset = CGSize(width: 5, height: 5) // 距離
+        iconImageView.layer.shadowRadius = 5 // ぼかし量
+        
+        // 以下、角丸パス追加とラスタライズで高速化
+        iconImageView.layer.shadowPath = UIBezierPath(roundedRect: iconImageView.bounds, cornerRadius: 10).cgPath
+        iconImageView.layer.shouldRasterize = true
+        iconImageView.layer.rasterizationScale = UIScreen.main.scale
         self.addSubview(iconImageView)
         
+        
         //TaskTitle
-        taskNameLabel.frame = CGRect(x: 120, y: 0, width: 200, height: 24)
-        taskNameLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        taskNameLabel.frame = CGRect(x: 110, y: 12, width: 200, height: 20)
+        taskNameLabel.font = UIFont.boldSystemFont(ofSize: 20)
         taskNameLabel.textColor = UIColor.gray
         taskNameLabel.textAlignment = NSTextAlignment.left
-        taskNameLabel.text = "aaaa"
+        taskNameLabel.text = "１週間マラソン"
         self.addSubview(taskNameLabel)
-        /*
         
-        //timeLabel
-        timeLabel.frame = CGRect(x: 16, y: 8, width: 200, height: 24)
-        timeLabel.text = "07:00"
-        timeLabel.font = UIFont.boldSystemFont(ofSize: 24)
-        timeLabel.textColor = UIColor.gray
-        timeLabel.textAlignment = NSTextAlignment.left
-        self.addSubview(timeLabel)
-        
-        //timeLabel
-        alarmNameLabel.frame = CGRect(x: 16, y: 36, width: 200, height: 18)
-        alarmNameLabel.text = "アラーム名"
-        alarmNameLabel.font = UIFont.systemFont(ofSize: 18)
-        alarmNameLabel.textColor = UIColor.gray
-        alarmNameLabel.textAlignment = NSTextAlignment.left
-        self.addSubview(alarmNameLabel)
-        
-        
-        //timeLabel
-        weekLabel.frame = CGRect(x: 16, y: 56, width: 200, height: 18)
-        weekLabel.text = "毎日"
-        weekLabel.font = UIFont.systemFont(ofSize: 18)
-        weekLabel.textColor = UIColor.gray
-        weekLabel.textAlignment = NSTextAlignment.left
-        self.addSubview(weekLabel)
- */
+        //taskDescription
+        taskDescriptionLabel.frame = CGRect(x: 110, y: 40, width: 200, height: 16)
+        taskDescriptionLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        taskDescriptionLabel.textColor = UIColor.gray
+        taskDescriptionLabel.textAlignment = NSTextAlignment.left
+        taskDescriptionLabel.text = "１週間でフルマラソン走りますよ、頑張るよ"
+        taskDescriptionLabel.numberOfLines = 0
+        taskDescriptionLabel.sizeToFit()
+        //let rect: CGSize = taskDescriptionLabel.sizeThatFits(CGSize(width: frame.width, height: CGFloat.greatestFiniteMagnitude))
+        //taskDescriptionLabel.frame = CGRect(x: 110, y: 32, width: rect.width, height: rect.height)
+        self.addSubview(taskDescriptionLabel)
  
     }
 
