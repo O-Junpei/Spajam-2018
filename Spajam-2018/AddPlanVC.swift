@@ -9,13 +9,20 @@ class AddPlanVC: UIViewController, UITextFieldDelegate {
     var tabBarHeight:CGFloat!
     
     private var nameTextField: UITextField!
+    private var  startBtn:UIButton!
+    private var  endtBtn:UIButton!
+    private var  editMenuBtn:UIButton!
 
+    private var menuNameLabel:UILabel!
+    private var menuDescriptionLabel:UILabel!
+    
+    private var  saveBtn:UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = "目標設定"
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = UIColor.init(named: "BGGray")
         
         //Viewの大きさを取得
         viewWidth = self.view.frame.size.width
@@ -26,14 +33,15 @@ class AddPlanVC: UIViewController, UITextFieldDelegate {
         
         let name = UILabel()
         name.text = "目標名"
-        name.frame = CGRect(x: 0, y: statusBarHeight + navigationBarHeight, width: viewWidth, height: 20)
+        name.frame = CGRect(x: 32, y: statusBarHeight + navigationBarHeight + 20, width: viewWidth, height: 20)
         name.font = UIFont.boldSystemFont(ofSize: 20)
         name.textAlignment = NSTextAlignment.left
+        name.textColor = UIColor.init(named: "MainGray")
         self.view.addSubview(name)
         
         // UITextFieldの作成
         nameTextField = UITextField()
-        nameTextField.frame = CGRect(x: 50, y: statusBarHeight + navigationBarHeight + 40, width: 200, height: 50)
+        nameTextField.frame = CGRect(x: 32, y: statusBarHeight + navigationBarHeight + 48, width: viewWidth - 32 * 2, height: 40)
         nameTextField.text = "myTextField"
         nameTextField.delegate = self
         nameTextField.borderStyle = UITextBorderStyle.roundedRect
@@ -42,20 +50,87 @@ class AddPlanVC: UIViewController, UITextFieldDelegate {
         
         let term = UILabel()
         term.text = "期間"
-        term.frame = CGRect(x: 0, y: statusBarHeight + navigationBarHeight + 80, width: viewWidth, height: 20)
+        term.textColor = UIColor.init(named: "MainGray")
+        term.frame = CGRect(x: 32, y: statusBarHeight + navigationBarHeight + 112, width: viewWidth, height: 20)
         term.font = UIFont.boldSystemFont(ofSize: 20)
         term.textAlignment = NSTextAlignment.left
         self.view.addSubview(term)
         
+        //スタート
+        startBtn = UIButton()
+        startBtn.frame = CGRect(x: 32, y: statusBarHeight + navigationBarHeight + 140, width: (viewWidth - 64)/2 - 2 , height: 40)
+        startBtn.backgroundColor = UIColor.gray
+        startBtn.addTarget(self, action: #selector(cornerCircleButtonClicked(sender:)), for:.touchUpInside)
+        startBtn.setTitle("2018/05/06", for: UIControlState.normal)
+        startBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
+        startBtn.layer.masksToBounds = true
+        startBtn.layer.cornerRadius = 4.0
+        self.view.addSubview(startBtn)
         
-        
+        //エンド
+        endtBtn = UIButton()
+        endtBtn.frame = CGRect(x: viewWidth/2 + 2, y: statusBarHeight + navigationBarHeight + 140, width: (viewWidth - 64)/2 - 2, height: 40)
+        endtBtn.backgroundColor = UIColor.gray
+        endtBtn.addTarget(self, action: #selector(cornerCircleButtonClicked(sender:)), for:.touchUpInside)
+        endtBtn.setTitle("2018/05/06", for: UIControlState.normal)
+        endtBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
+        endtBtn.layer.masksToBounds = true
+        endtBtn.layer.cornerRadius = 4.0
+        self.view.addSubview(endtBtn)
         
         let menu = UILabel()
         menu.text = "メニュー"
-        menu.frame = CGRect(x: 0, y: statusBarHeight + navigationBarHeight + 160, width: viewWidth, height: 20)
+        menu.textColor = UIColor.init(named: "MainGray")
+        menu.frame = CGRect(x: 32, y: statusBarHeight + navigationBarHeight + 200, width: viewWidth, height: 20)
         menu.font = UIFont.boldSystemFont(ofSize: 20)
         menu.textAlignment = NSTextAlignment.left
         self.view.addSubview(menu)
+        
+        //メニューの編集
+        editMenuBtn = UIButton()
+        editMenuBtn.frame = CGRect(x: 32, y: statusBarHeight + navigationBarHeight + 228, width: viewWidth - 64, height: 40)
+        editMenuBtn.backgroundColor = UIColor.gray
+        editMenuBtn.addTarget(self, action: #selector(cornerCircleButtonClicked(sender:)), for:.touchUpInside)
+        editMenuBtn.setTitle("メニューを編集する", for: UIControlState.normal)
+        editMenuBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
+        editMenuBtn.layer.masksToBounds = true
+        editMenuBtn.layer.cornerRadius = 4.0
+        self.view.addSubview(editMenuBtn)
+        
+        //メニューの名前
+        menuNameLabel = UILabel()
+        menuNameLabel.text = "ランニング"
+        menuNameLabel.textColor = UIColor.init(named: "MainGray")
+        menuNameLabel.frame = CGRect(x: 32, y: statusBarHeight + navigationBarHeight + 280, width: (viewWidth - 64)/2, height: 16)
+        menuNameLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        menuNameLabel.textAlignment = NSTextAlignment.left
+        self.view.addSubview(menuNameLabel)
+        
+        //メニューの詳細
+        menuNameLabel = UILabel()
+        menuNameLabel.text = "10 Km"
+        menuNameLabel.textColor = UIColor.init(named: "MainGray")
+        menuNameLabel.frame = CGRect(x: viewWidth/2, y: statusBarHeight + navigationBarHeight + 280, width: (viewWidth - 64)/2, height: 16)
+        menuNameLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        menuNameLabel.textAlignment = NSTextAlignment.right
+        self.view.addSubview(menuNameLabel)
+        
+        //セーブボタン
+        saveBtn = UIButton()
+        saveBtn.frame = CGRect(x: 32, y: viewHeight - (statusBarHeight + navigationBarHeight + tabBarHeight), width: (viewWidth - 64), height: 40)
+        saveBtn.backgroundColor = UIColor.init(named: "MainPink")
+        saveBtn.addTarget(self, action: #selector(cornerCircleButtonClicked(sender:)), for:.touchUpInside)
+        saveBtn.setTitle("保存する", for: UIControlState.normal)
+        saveBtn.setTitleColor(UIColor.white, for: UIControlState.normal)
+        saveBtn.layer.masksToBounds = true
+        saveBtn.layer.cornerRadius = 4.0
+        self.view.addSubview(saveBtn)
+        
+    }
+    
+    //角丸ボタンが押されたら呼ばれます
+    @objc internal func cornerCircleButtonClicked(sender: UIButton){
+        print("cornerCircleButtonBtnClicked")
     }
     
     //UITextFieldが編集された前に呼ばれる

@@ -17,8 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         //tabb
-        UITabBar.appearance().tintColor = .black
-        UITabBar.appearance().unselectedItemTintColor = .gray
+        UITabBar.appearance().tintColor = UIColor.init(named: "MainPink")
+        UITabBar.appearance().unselectedItemTintColor = UIColor.gray
         UITabBar.appearance().barTintColor = .white
         UITabBar.appearance().isTranslucent = false
         
