@@ -132,18 +132,5 @@ class AddPlanDateVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
         }
         
 
-        
-        
-        switch component {
-        case 0:
-            print(String(row))
-        case 1:
-            print(String(row))
-        case 2:
-            print(String(row))
-            
-        default:
-            print("Error")
-        }
     }
 }

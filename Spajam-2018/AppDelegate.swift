@@ -40,9 +40,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         thirdViewController?.tabBarItem = UITabBarItem(title: "自己管理", image: UIImage(named: "tab-icon-myList"), tag: 3)
         viewControllers.append(thirdViewController!)
 
-        let fourthViewController: TopVC? = TopVC()
+        let fourthViewController: MyPageVC? = MyPageVC()
         fourthViewController?.tabBarItem = UITabBarItem(title: "マイページ", image: UIImage(named: "tab-icon-myPage"), tag: 4)
-        viewControllers.append(fourthViewController!)
+        let fourthNavigationController = UINavigationController(rootViewController: fourthViewController!)
+        viewControllers.append(fourthNavigationController)
 
         tabBarController = UITabBarController()
         tabBarController?.setViewControllers(viewControllers, animated: false)

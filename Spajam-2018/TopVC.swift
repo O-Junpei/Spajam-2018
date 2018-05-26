@@ -35,9 +35,6 @@ class TopVC: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         tasksTableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(self.refresh(sender:)), for: .valueChanged)
         self.view.addSubview(tasksTableView)
-        
-        
-        getJsonDatas()
     }
     
     override func viewWillAppear(_ animated: Bool) {
