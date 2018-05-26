@@ -1,7 +1,14 @@
 import UIKit
 import SCLAlertView
 
+protocol AddMuneDelegate: class  {
+    func addMenu(menu:String, description:String)
+}
+
 class AddPlanListVC: UIViewController ,UITableViewDelegate, UITableViewDataSource {
+    
+    
+    weak var delegate: AddMuneDelegate?
 
     //テーブルビューインスタンス
     private var planListTableView: UITableView!
@@ -51,7 +58,8 @@ class AddPlanListVC: UIViewController ,UITableViewDelegate, UITableViewDataSourc
         alert.addButton("保存") {
             if let name = txt.text {
                 if name != "" {
-
+                    self.delegate?.addMenu(menu: self.planList[indexPath.row], description: name)
+                    self.navigationController?.popViewController(animated: true)
                 } else {
                     SCLAlertView().showError("Error", subTitle: "目標を入力してください") // Error
                 }

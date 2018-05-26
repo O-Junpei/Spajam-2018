@@ -1,6 +1,6 @@
 import UIKit
 
-class AddPlanVC: UIViewController, UITextFieldDelegate {
+class AddPlanVC: UIViewController, UITextFieldDelegate, AddMuneDelegate {
     
     var viewWidth:CGFloat!
     var viewHeight:CGFloat!
@@ -107,13 +107,13 @@ class AddPlanVC: UIViewController, UITextFieldDelegate {
         self.view.addSubview(menuNameLabel)
         
         //メニューの詳細
-        menuNameLabel = UILabel()
-        menuNameLabel.text = "10 Km"
-        menuNameLabel.textColor = UIColor.init(named: "MainGray")
-        menuNameLabel.frame = CGRect(x: viewWidth/2, y: statusBarHeight + navigationBarHeight + 280, width: (viewWidth - 64)/2, height: 16)
-        menuNameLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        menuNameLabel.textAlignment = NSTextAlignment.right
-        self.view.addSubview(menuNameLabel)
+        menuDescriptionLabel = UILabel()
+        menuDescriptionLabel.text = "10 Km"
+        menuDescriptionLabel.textColor = UIColor.init(named: "MainGray")
+        menuDescriptionLabel.frame = CGRect(x: viewWidth/2, y: statusBarHeight + navigationBarHeight + 280, width: (viewWidth - 64)/2, height: 16)
+        menuDescriptionLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        menuDescriptionLabel.textAlignment = NSTextAlignment.right
+        self.view.addSubview(menuDescriptionLabel)
         
         //セーブボタン
         saveBtn = UIButton()
@@ -160,7 +160,14 @@ class AddPlanVC: UIViewController, UITextFieldDelegate {
     //menuボタンが押されたら呼ばれる
     @objc internal func menuBtnClicked(sender: UIButton){
         let addPlanListVC:AddPlanListVC = AddPlanListVC()
+        addPlanListVC.delegate = self
         self.navigationController?.pushViewController(addPlanListVC, animated: true)
     }
 
+    //Delegateで呼ぶViewの背景色を変えるメソッド
+    func addMenu(menu:String, description:String){
+        menuNameLabel.text = menu
+        menuDescriptionLabel.text = description
+    }
+    
 }
