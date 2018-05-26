@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		8DD1A90A20B9930800C0C857 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD1A90920B9930800C0C857 /* AppDelegate.swift */; };
-		8DD1A90C20B9930800C0C857 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD1A90B20B9930800C0C857 /* ViewController.swift */; };
+		8DD1A90C20B9930800C0C857 /* TopVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD1A90B20B9930800C0C857 /* TopVC.swift */; };
 		8DD1A90F20B9930800C0C857 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DD1A90D20B9930800C0C857 /* Main.storyboard */; };
 		8DD1A91120B9930900C0C857 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DD1A91020B9930900C0C857 /* Assets.xcassets */; };
 		8DD1A91420B9930900C0C857 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DD1A91220B9930900C0C857 /* LaunchScreen.storyboard */; };
 		8DD1A91F20B9930A00C0C857 /* Spajam_2018Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD1A91E20B9930A00C0C857 /* Spajam_2018Tests.swift */; };
 		8DD1A92A20B9930A00C0C857 /* Spajam_2018UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD1A92920B9930A00C0C857 /* Spajam_2018UITests.swift */; };
+		8DD1A93820B9B27300C0C857 /* TasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD1A93720B9B27300C0C857 /* TasksTableViewCell.swift */; };
 		B63B3A8B0B83FA3E38919BE9 /* Pods_Spajam_2018Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 569491E6107871570F0B3A87 /* Pods_Spajam_2018Tests.framework */; };
 		C665B03C246F2747DF3EF73C /* Pods_Spajam_2018.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61D25F71EFE3574E7BEF2ABD /* Pods_Spajam_2018.framework */; };
 		D86B11B0DA13DB46F4A305C3 /* Pods_Spajam_2018UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EB0385D1B811AF16654EE03 /* Pods_Spajam_2018UITests.framework */; };
@@ -46,7 +47,7 @@
 		8042F68ADFF69D6E3031B36E /* Pods-Spajam-2018.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spajam-2018.release.xcconfig"; path = "Pods/Target Support Files/Pods-Spajam-2018/Pods-Spajam-2018.release.xcconfig"; sourceTree = "<group>"; };
 		8DD1A90620B9930800C0C857 /* Spajam-2018.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spajam-2018.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD1A90920B9930800C0C857 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8DD1A90B20B9930800C0C857 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8DD1A90B20B9930800C0C857 /* TopVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopVC.swift; sourceTree = "<group>"; };
 		8DD1A90E20B9930800C0C857 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8DD1A91020B9930900C0C857 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8DD1A91320B9930900C0C857 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -57,6 +58,7 @@
 		8DD1A92520B9930A00C0C857 /* Spajam-2018UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Spajam-2018UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DD1A92920B9930A00C0C857 /* Spajam_2018UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spajam_2018UITests.swift; sourceTree = "<group>"; };
 		8DD1A92B20B9930A00C0C857 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8DD1A93720B9B27300C0C857 /* TasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewCell.swift; sourceTree = "<group>"; };
 		BD7E1D6C115346DD88C930EA /* Pods-Spajam-2018.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spajam-2018.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Spajam-2018/Pods-Spajam-2018.debug.xcconfig"; sourceTree = "<group>"; };
 		BF7FC3925747DB39A631C7DE /* Pods-Spajam-2018Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spajam-2018Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Spajam-2018Tests/Pods-Spajam-2018Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,7 +127,8 @@
 			isa = PBXGroup;
 			children = (
 				8DD1A90920B9930800C0C857 /* AppDelegate.swift */,
-				8DD1A90B20B9930800C0C857 /* ViewController.swift */,
+				8DD1A90B20B9930800C0C857 /* TopVC.swift */,
+				8DD1A93720B9B27300C0C857 /* TasksTableViewCell.swift */,
 				8DD1A90D20B9930800C0C857 /* Main.storyboard */,
 				8DD1A91020B9930900C0C857 /* Assets.xcassets */,
 				8DD1A91220B9930900C0C857 /* LaunchScreen.storyboard */,
@@ -379,7 +382,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DD1A90C20B9930800C0C857 /* ViewController.swift in Sources */,
+				8DD1A93820B9B27300C0C857 /* TasksTableViewCell.swift in Sources */,
+				8DD1A90C20B9930800C0C857 /* TopVC.swift in Sources */,
 				8DD1A90A20B9930800C0C857 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
