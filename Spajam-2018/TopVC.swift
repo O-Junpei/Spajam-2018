@@ -47,7 +47,8 @@ class TopVC: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     
     //Mark: テーブルビューのセルが押されたら呼ばれる
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(indexPath.row)番のセルを選択しました！ ")
+        let detailVC:DetailVC = DetailVC()
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
 
 }

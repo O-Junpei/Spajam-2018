@@ -13,15 +13,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var navigationController: UINavigationController?
-
+    var tabBarController: UITabBarController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window!.makeKeyAndVisible()
+        
+        
+        // ページを格納する配列
+        var viewControllers: [UIViewController] = []
+        
         let firstViewController: TopVC? = TopVC()
+        firstViewController?.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 1)
         navigationController = UINavigationController(rootViewController: firstViewController!)
-        window!.rootViewController = navigationController
+        viewControllers.append(navigationController!)
+    
+        let secondViewController: TopVC? = TopVC()
+        secondViewController?.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 2)
+        viewControllers.append(secondViewController!)
+
+        let thirdViewController: TopVC? = TopVC()
+        thirdViewController?.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 3)
+        viewControllers.append(thirdViewController!)
+
+        let fourthViewController: TopVC? = TopVC()
+        fourthViewController?.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 4)
+        viewControllers.append(fourthViewController!)
+
+        tabBarController = UITabBarController()
+        tabBarController?.setViewControllers(viewControllers, animated: false)
+        window?.rootViewController = tabBarController
 
         return true
     }
