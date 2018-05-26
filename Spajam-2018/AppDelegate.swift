@@ -30,20 +30,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var viewControllers: [UIViewController] = []
         
         let firstViewController: TopVC? = TopVC()
-        firstViewController?.tabBarItem = UITabBarItem(title: "aaaa", image: UIImage(named: "tab-icon-sample"), tag: 1)
+        firstViewController?.tabBarItem = UITabBarItem(title: "センター", image: UIImage(named: "tab-icon-square"), tag: 1)
         navigationController = UINavigationController(rootViewController: firstViewController!)
         viewControllers.append(navigationController!)
     
         let secondViewController: TopVC? = TopVC()
-        secondViewController?.tabBarItem = UITabBarItem(title: "aaaa", image: UIImage(named: "tab-icon-sample"), tag: 2)
+        secondViewController?.tabBarItem = UITabBarItem(title: "目標設定", image: UIImage(named: "tab-icon-addPlan"), tag: 2)
         viewControllers.append(secondViewController!)
 
         let thirdViewController: TopVC? = TopVC()
-        thirdViewController?.tabBarItem = UITabBarItem(title: "aaaa", image: UIImage(named: "tab-icon-sample"), tag: 3)
+        thirdViewController?.tabBarItem = UITabBarItem(title: "自己管理", image: UIImage(named: "tab-icon-myList"), tag: 3)
         viewControllers.append(thirdViewController!)
 
         let fourthViewController: TopVC? = TopVC()
-        fourthViewController?.tabBarItem = UITabBarItem(title: "aaaa", image: UIImage(named: "tab-icon-sample"), tag: 4)
+        fourthViewController?.tabBarItem = UITabBarItem(title: "マイページ", image: UIImage(named: "tab-icon-myPage"), tag: 4)
         viewControllers.append(fourthViewController!)
 
         tabBarController = UITabBarController()

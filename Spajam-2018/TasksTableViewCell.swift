@@ -3,16 +3,20 @@ import UIKit
 
 class TasksTableViewCell: UITableViewCell {
     
-    var timeLabel:UILabel!
-    var alarmNameLabel:UILabel!
-    var weekLabel:UILabel!
+    //var timeLabel:UILabel!
+    //var alarmNameLabel:UILabel!
+    //var weekLabel:UILabel!
+    
+    var iconImageView:UIImageView!
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        timeLabel = UILabel()
-        alarmNameLabel = UILabel()
-        weekLabel = UILabel()
+        iconImageView = UIImageView()
+        
+        //timeLabel = UILabel()
+        //alarmNameLabel = UILabel()
+        //weekLabel = UILabel()
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -27,6 +31,15 @@ class TasksTableViewCell: UITableViewCell {
         super.layoutSubviews()
         //let cellWidth:CGFloat = self.frame.width
         //let cellHeight:CGFloat = self.frame.height
+        
+        
+        //iconImageView
+        iconImageView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        iconImageView.image = UIImage(named: "tab-icon-sample")
+        self.addSubview(iconImageView)
+        
+        
+        /*
         
         //timeLabel
         timeLabel.frame = CGRect(x: 16, y: 8, width: 200, height: 24)
@@ -52,7 +65,8 @@ class TasksTableViewCell: UITableViewCell {
         weekLabel.textColor = UIColor.gray
         weekLabel.textAlignment = NSTextAlignment.left
         self.addSubview(weekLabel)
-        
+ */
+ 
     }
 
 }

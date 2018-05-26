@@ -1,4 +1,6 @@
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class TopVC: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     
@@ -23,7 +25,7 @@ class TopVC: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         tasksTableView.delegate = self
         tasksTableView.dataSource = self
         tasksTableView.frame = CGRect(x: 0, y: 0, width: viewWidth, height: viewHeight)
-        tasksTableView.rowHeight = 80
+        tasksTableView.rowHeight = 100
         tasksTableView.register(TasksTableViewCell.self, forCellReuseIdentifier: NSStringFromClass(TasksTableViewCell.self))
         self.view.addSubview(tasksTableView)
     }
