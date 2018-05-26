@@ -20,25 +20,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window!.makeKeyAndVisible()
         
+        UITabBar.appearance().tintColor = .green
+        UITabBar.appearance().unselectedItemTintColor = .red
+        UITabBar.appearance().barTintColor = .orange
+        UITabBar.appearance().isTranslucent = false
+        
         
         // ページを格納する配列
         var viewControllers: [UIViewController] = []
         
         let firstViewController: TopVC? = TopVC()
-        firstViewController?.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 1)
+        firstViewController?.tabBarItem = UITabBarItem(title: "aaaa", image: UIImage(named: "tab-icon-sample"), tag: 1)
         navigationController = UINavigationController(rootViewController: firstViewController!)
         viewControllers.append(navigationController!)
     
         let secondViewController: TopVC? = TopVC()
-        secondViewController?.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 2)
+        secondViewController?.tabBarItem = UITabBarItem(title: "aaaa", image: UIImage(named: "tab-icon-sample"), tag: 2)
         viewControllers.append(secondViewController!)
 
         let thirdViewController: TopVC? = TopVC()
-        thirdViewController?.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 3)
+        thirdViewController?.tabBarItem = UITabBarItem(title: "aaaa", image: UIImage(named: "tab-icon-sample"), tag: 3)
         viewControllers.append(thirdViewController!)
 
         let fourthViewController: TopVC? = TopVC()
-        fourthViewController?.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 4)
+        fourthViewController?.tabBarItem = UITabBarItem(title: "aaaa", image: UIImage(named: "tab-icon-sample"), tag: 4)
         viewControllers.append(fourthViewController!)
 
         tabBarController = UITabBarController()

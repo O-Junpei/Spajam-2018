@@ -10,8 +10,7 @@ class TopVC: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = .red
-        
+        self.title = "センター"
 
         myItems = ["りんご", "すいか", "もも", "さくらんぼ", "ぶどう", "なし", "さくらんぼ", "ぶどう", "なし", "さくらんぼ", "ぶどう", "なし"]
 
@@ -24,12 +23,9 @@ class TopVC: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         tasksTableView.delegate = self
         tasksTableView.dataSource = self
         tasksTableView.frame = CGRect(x: 0, y: 0, width: viewWidth, height: viewHeight)
-        
         tasksTableView.rowHeight = 80
         tasksTableView.register(TasksTableViewCell.self, forCellReuseIdentifier: NSStringFromClass(TasksTableViewCell.self))
-
         self.view.addSubview(tasksTableView)
-
     }
     
     //MARK: テーブルビューのセルの数を設定する
