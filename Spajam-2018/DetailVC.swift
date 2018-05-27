@@ -152,16 +152,16 @@ class DetailVC: UIViewController {
         self.view.layer.addSublayer(baseLayer)
         
         //pink
-        let pinkStart:CGFloat = pi * 1.5 // 開始の角度
-        let pinkEnd :CGFloat = pi * (0.02 * CGFloat(achievement) + 1.5) // 終了の角度
         let pinkPath: UIBezierPath = UIBezierPath();
-        pinkPath.move(to: CGPoint(x:viewWidth/2, y:statusBarHeight + navigationBarHeight + 328))
-        pinkPath.addArc(withCenter: CGPoint(x:viewWidth/2, y:statusBarHeight + navigationBarHeight + 328), radius: 100, startAngle: pinkStart, endAngle: pinkEnd, clockwise: true)
         let pinkLayer = CAShapeLayer()
         pinkLayer.fillColor = UIColor.init(named: "MainPink")?.cgColor
-        pinkLayer.path = pinkPath.cgPath
         self.view.layer.addSublayer(pinkLayer)
-        
+
+        let pinkStart:CGFloat = pi * 1.5 // 開始の角度
+        let pinkEnd :CGFloat = pi * (0.02 * CGFloat(self.achievement) + 1.5) // 終了の角度
+        pinkPath.move(to: CGPoint(x:self.self.viewWidth/2, y:self.statusBarHeight + self.navigationBarHeight + 328))
+        pinkPath.addArc(withCenter: CGPoint(x:self.viewWidth/2, y:self.statusBarHeight + self.navigationBarHeight + 328), radius: 100, startAngle: pinkStart, endAngle: pinkEnd, clockwise: true)
+        pinkLayer.path = pinkPath.cgPath
         
         //white
         let whiteStart:CGFloat = 0 // 開始の角度

@@ -76,8 +76,6 @@ class TasksTableViewCell: UITableViewCell {
         
         progressTop.backgroundColor = UIColor.init(named: "MainPink")
         self.addSubview(progressTop)
-
- 
     }
 
 }
