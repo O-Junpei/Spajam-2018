@@ -47,7 +47,7 @@ class TasksTableViewCell: UITableViewCell {
         
         
         //TaskTitle
-        titleLabel.frame = CGRect(x: 110, y: 12, width: 200, height: 20)
+        titleLabel.frame = CGRect(x: 110, y: 12, width: frame.width - 120, height: 20)
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
         titleLabel.textColor = UIColor.gray
         titleLabel.textAlignment = NSTextAlignment.left

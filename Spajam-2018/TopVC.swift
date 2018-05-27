@@ -44,7 +44,6 @@ class TopVC: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         if let indexPathForSelectedRow = tasksTableView.indexPathForSelectedRow {
             tasksTableView.deselectRow(at: indexPathForSelectedRow, animated: true)
         }
-        
         getJsonDatas()
     }
     
@@ -102,6 +101,17 @@ class TopVC: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     //Mark: テーブルビューのセルが押されたら呼ばれる
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC:DetailVC = DetailVC()
+        detailVC.achievement = contentsJson[indexPath.row]["achievement"].intValue
+        detailVC.titleStr = contentsJson[indexPath.row]["title"].stringValue
+        detailVC.dateStr = contentsJson[indexPath.row]["start"].stringValue.replacingOccurrences(of:"-", with:"/") + "-" + contentsJson[indexPath.row]["end"].stringValue.replacingOccurrences(of:"-", with:"/")
+        let menu = contentsJson[indexPath.row]["menu"].stringValue
+        let menuAry = menu.split(separator: "/")
+        
+        detailVC.menuTitleStr = String(menuAry[0])
+        detailVC.menuDetailStr = String(menuAry[1])
+
+        
+        
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
 

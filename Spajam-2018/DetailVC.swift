@@ -8,6 +8,14 @@ class DetailVC: UIViewController {
     var navigationBarHeight:CGFloat!
     var tabBarHeight:CGFloat!
     
+    
+    var titleStr:String!
+    var dateStr:String!
+    var achievement:Int!
+    var menuTitleStr:String!
+    var menuDetailStr:String!
+
+    
     private var titleTextField: UITextField!
     private var  startBtn:UIButton!
     private var  endBtn:UIButton!
@@ -17,6 +25,10 @@ class DetailVC: UIViewController {
     private var menuDescriptionLabel:UILabel!
     
     private var  saveBtn:UIButton!
+    
+    private var proteinCount:UILabel!
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +56,7 @@ class DetailVC: UIViewController {
         self.view.addSubview(title)
         
         let titleLabel = UILabel()
-        titleLabel.text = "一週間でフルマラソン"
+        titleLabel.text = titleStr
         titleLabel.textColor = UIColor.init(named: "MainGray")
         titleLabel.frame = CGRect(x: 32, y: statusBarHeight + navigationBarHeight + 52, width: viewWidth - 64, height: 16)
         titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
@@ -60,7 +72,7 @@ class DetailVC: UIViewController {
         self.view.addSubview(term)
         
         let termLabel = UILabel()
-        termLabel.text = "2018/05/07-2018/06/07"
+        termLabel.text = dateStr
         termLabel.textColor = UIColor.init(named: "MainGray")
         termLabel.frame = CGRect(x: 32, y: statusBarHeight + navigationBarHeight + 120, width: viewWidth - 64, height: 16)
         termLabel.font = UIFont.boldSystemFont(ofSize: 16)
@@ -77,7 +89,7 @@ class DetailVC: UIViewController {
         
         //メニューの名前
         let menuNameLabel = UILabel()
-        menuNameLabel.text = "ランニング"
+        menuNameLabel.text = menuTitleStr
         menuNameLabel.textColor = UIColor.init(named: "MainGray")
         menuNameLabel.frame = CGRect(x: 32, y: statusBarHeight + navigationBarHeight + 188, width: (viewWidth - 64)/2, height: 16)
         menuNameLabel.font = UIFont.boldSystemFont(ofSize: 16)
@@ -86,7 +98,7 @@ class DetailVC: UIViewController {
         
         //メニューの詳細
         let menuDescriptionLabel = UILabel()
-        menuDescriptionLabel.text = "10 Km"
+        menuDescriptionLabel.text = menuDetailStr
         menuDescriptionLabel.textColor = UIColor.init(named: "MainGray")
         menuDescriptionLabel.frame = CGRect(x: viewWidth/2, y: statusBarHeight + navigationBarHeight + 188, width: (viewWidth - 64)/2, height: 16)
         menuDescriptionLabel.font = UIFont.boldSystemFont(ofSize: 16)
@@ -97,31 +109,63 @@ class DetailVC: UIViewController {
         let protein = UILabel()
         protein.text = "プロテイン"
         protein.textColor = UIColor.init(named: "MainGray")
-        protein.frame = CGRect(x: 32, y: statusBarHeight + navigationBarHeight + 224, width: viewWidth, height: 20)
+        protein.frame = CGRect(x: 32, y: statusBarHeight + navigationBarHeight + 224, width: (viewWidth-64)-100, height: 20)
         protein.font = UIFont.boldSystemFont(ofSize: 20)
         protein.textAlignment = NSTextAlignment.left
         self.view.addSubview(protein)
         
+        proteinCount = UILabel()
+        proteinCount.text = "100個"
+        proteinCount.textColor = UIColor.init(named: "MainGray")
+        proteinCount.frame = CGRect(x: (viewWidth-32)-100 , y: statusBarHeight + navigationBarHeight + 224, width: 100, height: 20)
+        proteinCount.font = UIFont.boldSystemFont(ofSize: 20)
+        proteinCount.textAlignment = NSTextAlignment.right
+        self.view.addSubview(proteinCount)
         
         
         let pi = CGFloat(Double.pi)
-        let start:CGFloat = pi * 1.5 // 開始の角度
-        let end :CGFloat = pi * 1.0// 終了の角度
         
-        let path: UIBezierPath = UIBezierPath();
-        path.move(to: CGPoint(x:self.view.frame.width/2, y:self.view.frame.height/2))
-        path.addArc(withCenter: CGPoint(x:self.view.frame.width/2, y:self.view.frame.height/2), radius: 100, startAngle: start, endAngle: end, clockwise: true) // 円弧
+        //base
+        let baseStart:CGFloat = 0 // 開始の角度
+        let baseEnd :CGFloat = pi * 2.0// 終了の角度
+        let basePath: UIBezierPath = UIBezierPath();
+        basePath.move(to: CGPoint(x:viewWidth/2, y:statusBarHeight + navigationBarHeight + 380))
+        basePath.addArc(withCenter: CGPoint(x:viewWidth/2, y:statusBarHeight + navigationBarHeight + 380), radius: 100, startAngle: baseStart, endAngle: baseEnd, clockwise: true)
+        let baseLayer = CAShapeLayer()
+        baseLayer.fillColor = UIColor.init(named: "ProgressGray")?.cgColor
+        baseLayer.path = basePath.cgPath
+        self.view.layer.addSublayer(baseLayer)
         
-        let layer = CAShapeLayer()
-        layer.fillColor = UIColor.orange.cgColor
-        layer.path = path.cgPath
+        //pink
+        let pinkStart:CGFloat = pi * 1.5 // 開始の角度
+        let pinkEnd :CGFloat = pi * (0.02 * CGFloat(achievement) + 1.5) // 終了の角度
+        let pinkPath: UIBezierPath = UIBezierPath();
+        pinkPath.move(to: CGPoint(x:viewWidth/2, y:statusBarHeight + navigationBarHeight + 380))
+        pinkPath.addArc(withCenter: CGPoint(x:viewWidth/2, y:statusBarHeight + navigationBarHeight + 380), radius: 100, startAngle: pinkStart, endAngle: pinkEnd, clockwise: true)
+        let pinkLayer = CAShapeLayer()
+        pinkLayer.fillColor = UIColor.init(named: "MainPink")?.cgColor
+        pinkLayer.path = pinkPath.cgPath
+        self.view.layer.addSublayer(pinkLayer)
         
         
+        //white
+        let whiteStart:CGFloat = 0 // 開始の角度
+        let whiteEnd :CGFloat = pi * 2.0// 終了の角度
+        let whitePath: UIBezierPath = UIBezierPath();
+        whitePath.move(to: CGPoint(x:viewWidth/2, y:statusBarHeight + navigationBarHeight + 380))
+        whitePath.addArc(withCenter: CGPoint(x:viewWidth/2, y:statusBarHeight + navigationBarHeight + 380), radius: 80, startAngle: whiteStart, endAngle: whiteEnd, clockwise: true)
+        let whiteLayer = CAShapeLayer()
+        whiteLayer.fillColor = UIColor.init(named: "BGGray")?.cgColor
+        whiteLayer.path = whitePath.cgPath
+        self.view.layer.addSublayer(whiteLayer)
         
+        let percentLabel = UILabel()
+        percentLabel.text = String(achievement) + " %"
+        percentLabel.frame = CGRect(x: 0 , y: statusBarHeight + navigationBarHeight + 360, width: viewWidth, height: 40)
+        percentLabel.textAlignment = NSTextAlignment.center
+        percentLabel.font = UIFont.boldSystemFont(ofSize: 40)
+        self.view.addSubview(percentLabel)
         
-        
-        
-        //self.view.layer.addSublayer(layer)
         
     }
 
