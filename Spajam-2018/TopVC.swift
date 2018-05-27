@@ -94,6 +94,10 @@ class TopVC: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         } else {
             cell.iconImageView.image = UIImage(named: "hukkin")
         }
+        cell.progressTop.frame = CGRect(x: 110, y: 68, width: 0, height: 16)
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseIn, animations: {
+            cell.progressTop.frame = CGRect(x: 110, y: 68, width: 2 * CGFloat(self.contentsJson[indexPath.row]["achievement"].intValue), height: 16)
+        }, completion: nil)
         
         return cell
     }
@@ -110,6 +114,7 @@ class TopVC: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         detailVC.menuTitleStr = String(menuAry[0])
         detailVC.menuDetailStr = String(menuAry[1])
 
+        
         
         
         self.navigationController?.pushViewController(detailVC, animated: true)

@@ -7,12 +7,15 @@ class TasksTableViewCell: UITableViewCell {
     var titleLabel:UILabel!
     var dateLabel:UILabel!
     
+    var progressTop:UIView!
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         iconImageView = UIImageView()
         titleLabel = UILabel()
         dateLabel = UILabel()
+        progressTop = UIView()
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -65,6 +68,15 @@ class TasksTableViewCell: UITableViewCell {
         //let rect: CGSize = taskDescriptionLabel.sizeThatFits(CGSize(width: frame.width, height: CGFloat.greatestFiniteMagnitude))
         //taskDescriptionLabel.frame = CGRect(x: 110, y: 32, width: rect.width, height: rect.height)
         self.addSubview(dateLabel)
+        
+        let progressBase = UIView()
+        progressBase.frame = CGRect(x: 110, y: 68, width: 200, height: 16)
+        progressBase.backgroundColor = UIColor.init(named: "BtnGray")
+        self.addSubview(progressBase)
+        
+        progressTop.backgroundColor = UIColor.init(named: "MainPink")
+        self.addSubview(progressTop)
+
  
     }
 
