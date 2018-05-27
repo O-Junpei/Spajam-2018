@@ -251,7 +251,6 @@ class DetailVC: UIViewController {
                             self.showAlart()
                         }
                     }
-
                 } else {
                 }
                 print(json)
