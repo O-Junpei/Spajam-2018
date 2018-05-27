@@ -1,7 +1,8 @@
 import UIKit
+import AVFoundation
 import Alamofire
 import SwiftyJSON
-
+import UserNotifications
 
 class DetailVC: UIViewController {
     
@@ -34,7 +35,9 @@ class DetailVC: UIViewController {
     
     var timer: Timer!
 
-    
+    var audioPlayer : AVAudioPlayer!
+
+    private var firstFlug = true
     
 
     override func viewDidLoad() {
@@ -43,6 +46,11 @@ class DetailVC: UIViewController {
         //Viewの大きさを取得
         //let viewWidth = self.view.frame.size.width
         //let viewHeight = self.view.frame.size.height
+        
+        //通知の許可を出す
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+        }
 
         self.title = "メニュー"
         self.view.backgroundColor = UIColor.init(named: "BGGray")
@@ -193,9 +201,36 @@ class DetailVC: UIViewController {
         timer.invalidate()
     }
 
-    //basicボタンが押されたら呼ばれます
+    //proteinボタンが押されたら呼ばれます
     @objc internal func proteinButtonClicked(sender: UIButton){
         print("basicButtonBtnClicked")
+        Alamofire.request("http://spajam2018-rails-server.herokuapp.com/api/v0/protein/send/from/1/to/2").responseJSON{ response in
+            switch response.result {
+            case .success:
+                let json:JSON = JSON(response.result.value ?? kill)
+                if json["is_success"].boolValue {
+                    print(json)
+                    
+                } else {
+                }
+                print(json)
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func showAlart() {
+        let notificationVC:NotificationVC = NotificationVC()
+        notificationVC.modalPresentationStyle = .overCurrentContext
+        present(notificationVC, animated: true, completion: nil)
+        
+        //再生する音源のURLを生成.
+        let soundFilePath : String = Bundle.main.path(forResource: "notification", ofType: "caf")!
+        let fileURL = URL(fileURLWithPath: soundFilePath)
+        audioPlayer = try! AVAudioPlayer(contentsOf: fileURL)
+        audioPlayer.play()
     }
     
     @objc func update(tm: Timer) {
@@ -209,6 +244,12 @@ class DetailVC: UIViewController {
                     if self.proteinAmount != json["content"]["num_protein"].intValue {
                         self.proteinAmount = json["content"]["num_protein"].intValue
                         self.proteinCount.text = String(self.proteinAmount) + " 個"
+                        
+                        if self.firstFlug {
+                            self.firstFlug = false
+                        } else {
+                            self.showAlart()
+                        }
                     }
 
                 } else {

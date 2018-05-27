@@ -105,7 +105,7 @@ class TopVC: UIViewController, UITableViewDelegate, UITableViewDataSource  {
         detailVC.titleStr = contentsJson[indexPath.row]["title"].stringValue
         detailVC.dateStr = contentsJson[indexPath.row]["start"].stringValue.replacingOccurrences(of:"-", with:"/") + "-" + contentsJson[indexPath.row]["end"].stringValue.replacingOccurrences(of:"-", with:"/")
         let menu = contentsJson[indexPath.row]["menu"].stringValue
-        let menuAry = menu.split(separator: "/")
+        let menuAry = menu.split(separator: "-")
         
         detailVC.menuTitleStr = String(menuAry[0])
         detailVC.menuDetailStr = String(menuAry[1])

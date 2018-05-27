@@ -21,6 +21,8 @@
 		8DD1A94220B9EBA800C0C857 /* AddPlanDateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD1A94120B9EBA800C0C857 /* AddPlanDateVC.swift */; };
 		8DD1A94420BA225800C0C857 /* MyPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD1A94320BA225800C0C857 /* MyPageVC.swift */; };
 		8DD1A94620BA445E00C0C857 /* SelfManagementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD1A94520BA445E00C0C857 /* SelfManagementVC.swift */; };
+		8DD1A94820BA51C900C0C857 /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD1A94720BA51C900C0C857 /* NotificationVC.swift */; };
+		8DD1A94A20BA55AA00C0C857 /* notification.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8DD1A94920BA55AA00C0C857 /* notification.caf */; };
 		B63B3A8B0B83FA3E38919BE9 /* Pods_Spajam_2018Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 569491E6107871570F0B3A87 /* Pods_Spajam_2018Tests.framework */; };
 		C665B03C246F2747DF3EF73C /* Pods_Spajam_2018.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61D25F71EFE3574E7BEF2ABD /* Pods_Spajam_2018.framework */; };
 		D86B11B0DA13DB46F4A305C3 /* Pods_Spajam_2018UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EB0385D1B811AF16654EE03 /* Pods_Spajam_2018UITests.framework */; };
@@ -71,6 +73,8 @@
 		8DD1A94120B9EBA800C0C857 /* AddPlanDateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlanDateVC.swift; sourceTree = "<group>"; };
 		8DD1A94320BA225800C0C857 /* MyPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageVC.swift; sourceTree = "<group>"; };
 		8DD1A94520BA445E00C0C857 /* SelfManagementVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfManagementVC.swift; sourceTree = "<group>"; };
+		8DD1A94720BA51C900C0C857 /* NotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
+		8DD1A94920BA55AA00C0C857 /* notification.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = notification.caf; sourceTree = "<group>"; };
 		BD7E1D6C115346DD88C930EA /* Pods-Spajam-2018.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spajam-2018.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Spajam-2018/Pods-Spajam-2018.debug.xcconfig"; sourceTree = "<group>"; };
 		BF7FC3925747DB39A631C7DE /* Pods-Spajam-2018Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spajam-2018Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Spajam-2018Tests/Pods-Spajam-2018Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,6 +146,7 @@
 				8DD1A90B20B9930800C0C857 /* TopVC.swift */,
 				8DD1A93720B9B27300C0C857 /* TasksTableViewCell.swift */,
 				8DD1A93920B9B70200C0C857 /* DetailVC.swift */,
+				8DD1A94720BA51C900C0C857 /* NotificationVC.swift */,
 				8DD1A93F20B9EB7B00C0C857 /* AddPlanVC.swift */,
 				8DD1A93D20B9E19100C0C857 /* AddPlanListVC.swift */,
 				8DD1A94120B9EBA800C0C857 /* AddPlanDateVC.swift */,
@@ -149,6 +154,7 @@
 				8DD1A94320BA225800C0C857 /* MyPageVC.swift */,
 				8DD1A90D20B9930800C0C857 /* Main.storyboard */,
 				8DD1A91020B9930900C0C857 /* Assets.xcassets */,
+				8DD1A94920BA55AA00C0C857 /* notification.caf */,
 				8DD1A91220B9930900C0C857 /* LaunchScreen.storyboard */,
 				8DD1A91520B9930900C0C857 /* Info.plist */,
 			);
@@ -297,6 +303,7 @@
 				8DD1A91420B9930900C0C857 /* LaunchScreen.storyboard in Resources */,
 				8DD1A91120B9930900C0C857 /* Assets.xcassets in Resources */,
 				8DD1A90F20B9930800C0C857 /* Main.storyboard in Resources */,
+				8DD1A94A20BA55AA00C0C857 /* notification.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +408,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DD1A94620BA445E00C0C857 /* SelfManagementVC.swift in Sources */,
+				8DD1A94820BA51C900C0C857 /* NotificationVC.swift in Sources */,
 				8DD1A93820B9B27300C0C857 /* TasksTableViewCell.swift in Sources */,
 				8DD1A93E20B9E19100C0C857 /* AddPlanListVC.swift in Sources */,
 				8DD1A94220B9EBA800C0C857 /* AddPlanDateVC.swift in Sources */,
